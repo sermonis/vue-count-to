@@ -95,7 +95,13 @@ export default {
       if (this.autoplay) {
         this.start();
       }
-    }
+  },
+
+  displayValue( newVal ) {
+
+      this.$emit( 'change', newVal );
+
+  },
   },
   mounted() {
     if (this.autoplay) {
