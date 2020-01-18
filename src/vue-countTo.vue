@@ -14,6 +14,8 @@
 
     export default {
 
+        name: 'VueCountTo',
+
         props: {
 
             startVal: {
@@ -115,19 +117,23 @@
 
         },
 
-        data: () => ( {
+        data() {
 
-            localStartVal: this.startVal,
-            displayValue: this.formatNumber( this.startVal ),
-            printVal: null,
-            paused: false,
-            localDuration: this.duration,
-            startTime: null,
-            timestamp: null,
-            remaining: null,
-            rAF: null
+            return {
 
-        } ),
+                localStartVal: this.startVal,
+                displayValue: this.formatNumber( this.startVal ),
+                printVal: null,
+                paused: false,
+                localDuration: this.duration,
+                startTime: null,
+                timestamp: null,
+                remaining: null,
+                rAF: null
+
+            };
+
+        },
 
         computed: {
 
@@ -185,10 +191,14 @@
 
             start() {
 
+                this.$emit( 'start', this.startVal );
+
                 this.localStartVal = this.startVal;
                 this.startTime = null;
+                
                 this.localDuration = this.duration;
                 this.paused = false;
+
                 this.rAF = requestAnimationFrame( this.count );
 
             },
@@ -285,7 +295,7 @@
 
                 } else {
 
-                    this.$emit( 'callback' );
+                    this.$emit( 'end', this.displayValue );
 
                 }
 
