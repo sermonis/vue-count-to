@@ -163,7 +163,7 @@
 
             displayValue( newVal ) {
 
-                this.$emit( 'change', this.formatNumber( newVal ) );
+                this.$emit( 'change', newVal );
 
             },
 
